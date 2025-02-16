@@ -3,14 +3,14 @@ pragma solidity ^0.8.20;
 
 import {IIdentityRegistryStorage} from "../interfaces/storage/IIdentityRegistryStorage.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {
-    InvalidAddress, 
-    InvalidIdentityHash, 
-    IdentityDoesNotExist
-} from "../Errors/IdentityRegistryStorageErrors.sol";
+import {InvalidAddress, InvalidIdentityHash, IdentityDoesNotExist} from "../Errors/IdentityRegistryStorageErrors.sol";
 
-/** @dev this contract is used to store the identity of the user */
-/** @dev pt-br: este contrato é usado para armazenar a identidade do usuário verificado */
+/**
+ * @dev this contract is used to store the identity of the user
+ */
+/**
+ * @dev pt-br: este contrato é usado para armazenar a identidade do usuário verificado
+ */
 contract IdentityRegistryStorage is IIdentityRegistryStorage, Ownable {
     mapping(address => bytes32) private identities;
 
@@ -39,11 +39,7 @@ contract IdentityRegistryStorage is IIdentityRegistryStorage, Ownable {
         emit IdentityStored(_userAddress, _identityHash);
     }
 
-    function deleteIdentity(address _userAddress)
-        external
-        onlyOwner
-        identityExists(_userAddress)
-    {
+    function deleteIdentity(address _userAddress) external onlyOwner identityExists(_userAddress) {
         delete identities[_userAddress];
         emit IdentityDeleted(_userAddress);
     }

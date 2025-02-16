@@ -3,9 +3,9 @@ pragma solidity ^0.8.20;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-
-
-/** @dev ERC-3643 */
+/**
+ * @dev ERC-3643
+ */
 /**
  * @title ERC-3643
  * @author Renan C. F. Correa
@@ -13,11 +13,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  */
 interface IERC3643 {
     event UpdatedTokenInformation(
-        string newName,
-        string newSymbol,
-        uint8 newDecimals,
-        string newVersion,
-        address newOnchainID
+        string newName, string newSymbol, uint8 newDecimals, string newVersion, address newOnchainID
     );
 
     event IdentityRegistryAdded(address indexed identityRegistry);

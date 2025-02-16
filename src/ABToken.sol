@@ -1,18 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "./interfaces/IIdentityRegistry.sol";
-import "./interfaces/ICompliance.sol";
-import "./interfaces/IERC3643.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {IIdentityRegistry} from "./interfaces/IIdentityRegistry.sol";
+import {ICompliance} from "./interfaces/ICompliance.sol";
+import {IERC3643} from "./interfaces/IERC3643.sol";
 
-import {
-    Unauthorized,
-    TransferNotAllowed,
-    TokenPaused,
-    AddressFrozenError
-} from "./Errors/ABTokenErrors.sol";
+import {Unauthorized, TransferNotAllowed, TokenPaused, AddressFrozenError} from "./Errors/ABTokenErrors.sol";
 
 contract ABToken is ERC20, Ownable, IERC3643 {
     IIdentityRegistry public identityRegistry;
@@ -21,15 +16,9 @@ contract ABToken is ERC20, Ownable, IERC3643 {
     mapping(address => bool) public frozenAddresses;
     mapping(address => uint256) public frozenTokens;
 
-
-
-
-    constructor(
-        string memory name,
-        string memory symbol,
-        address _identityRegistry,
-        address _compliance
-    ) ERC20(name, symbol) {
+    constructor(string memory name, string memory symbol, address _identityRegistry, address _compliance)
+        ERC20(name, symbol)
+    {
         identityRegistry = IIdentityRegistry(_identityRegistry);
         compliance = ICompliance(_compliance);
     }
@@ -39,14 +28,12 @@ contract ABToken is ERC20, Ownable, IERC3643 {
         _;
     }
 
-
     modifier notFrozen(address user) {
         if (frozenAddresses[user]) {
             revert AddressFrozenError(user);
         }
         _;
     }
-    
 
     function setIdentityRegistry(address _identityRegistry) external onlyOwner {
         identityRegistry = IIdentityRegistry(_identityRegistry);
@@ -84,11 +71,12 @@ contract ABToken is ERC20, Ownable, IERC3643 {
         emit TokensUnfrozen(_userAddress, _amount);
     }
 
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal override notPaused notFrozen(from) {
+    function _beforeTokenTransfer(address from, address to, uint256 amount)
+        internal
+        override
+        notPaused
+        notFrozen(from)
+    {
         if (!compliance.isTransferAllowed(from, to, amount)) {
             revert TransferNotAllowed(from, to, amount);
         }

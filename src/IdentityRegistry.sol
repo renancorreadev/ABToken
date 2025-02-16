@@ -5,8 +5,12 @@ import {IIdentityRegistry} from "./interfaces/IIdentityRegistry.sol";
 import {IIdentityRegistryStorage} from "./interfaces/storage/IIdentityRegistryStorage.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-/** @dev this contract is used to register the identity of the user */
-/** @dev pt-br: este contrato é usado para registrar a identidade do usuário verificado fazendo a ponte entre o ERC3643 e o IdentityRegistryStorage */
+/**
+ * @dev this contract is used to register the identity of the user
+ */
+/**
+ * @dev pt-br: este contrato é usado para registrar a identidade do usuário verificado fazendo a ponte entre o ERC3643 e o IdentityRegistryStorage
+ */
 /// @dev pt-br: esse contrato gerencia a relação entre os usuários e suas identidades verificadas.
 contract IdentityRegistry is IIdentityRegistry, Ownable {
     IIdentityRegistryStorage private identityStorage;

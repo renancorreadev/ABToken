@@ -53,11 +53,8 @@ contract DeployRWAToken is Script {
         uint256[] memory claimTopics = new uint256[](0); // KYC
         address[] memory issuers = new address[](0);
         uint256[][] memory issuerClaims = new uint256[][](0);
-        ITREXFactory.ClaimDetails memory claimDetails = ITREXFactory.ClaimDetails({
-            claimTopics: claimTopics,
-            issuers: issuers,
-            issuerClaims: issuerClaims
-        });
+        ITREXFactory.ClaimDetails memory claimDetails =
+            ITREXFactory.ClaimDetails({claimTopics: claimTopics, issuers: issuers, issuerClaims: issuerClaims});
 
         // 4️⃣ Realizar o deploy do T-REX Suite
         string memory salt = "RWA-TOKEN-DEPLOY";

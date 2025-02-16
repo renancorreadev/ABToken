@@ -4,8 +4,9 @@ pragma solidity ^0.8.20;
 import {ICompliance} from "./interfaces/ICompliance.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-
-/** @dev pt-br: esse contrato é usado para adicionar regras de compliance e verificar se o usuário é compliant */
+/**
+ * @dev pt-br: esse contrato é usado para adicionar regras de compliance e verificar se o usuário é compliant
+ */
 contract Compliance is ICompliance, Ownable {
     mapping(bytes32 => bool) private complianceRules;
 

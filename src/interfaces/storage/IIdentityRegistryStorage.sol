@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/** @dev This interface is used to store the identity of the user */
+/**
+ * @dev This interface is used to store the identity of the user
+ */
 interface IIdentityRegistryStorage {
     event IdentityStored(address indexed userAddress, bytes32 identityHash);
     event IdentityDeleted(address indexed userAddress);
