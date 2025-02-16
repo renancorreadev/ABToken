@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 
 import {Script} from "forge-std/Script.sol";
-import {ABToken} from "../src/ABToken.sol";
 
 contract DeployABToken is Script {
     address public deployer;
@@ -12,8 +11,7 @@ contract DeployABToken is Script {
 
         vm.startBroadcast(deployer);
 
-        new ABToken("ABToken", "ABT", deployer);
-
+     
         vm.stopBroadcast();
     }
 }
