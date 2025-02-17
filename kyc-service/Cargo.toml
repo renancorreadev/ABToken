@@ -4,3 +4,19 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1", features = ["full"] }  # Runtime assíncrono
+axum = "0.6"  # Framework para API REST
+serde = { version = "1", features = ["derive"] }  # Serialização e deserialização
+serde_json = "1"  # JSON handling
+dotenv = "0.15"  # Carregar variáveis de ambiente
+sqlx = { version = "0.6", features = ["runtime-tokio-rustls", "postgres"] }  # Banco de dados PostgreSQL
+jsonwebtoken = "8"  # JWT para autenticação
+secp256k1 = "0.27"  # Assinatura de transações
+ethers = "2"  # Interação com a blockchain Ethereum
+anyhow = "1"  # Tratamento de erros
+tracing = "0.1"  # Logging
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }  # Subscriber para logging
+actix-web = "4"
+diesel = { version = "2", features = ["postgres", "r2d2", "chrono"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["serde", "v4"] }
